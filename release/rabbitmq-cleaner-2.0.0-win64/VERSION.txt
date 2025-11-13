@@ -1,0 +1,11 @@
+﻿RabbitMQ Cleaner C++ v2.0.0
+================================
+
+Para instalar via Scoop:
+  scoop bucket add extras
+  scoop install rabbitmq-cleaner
+
+Para usar:
+  .\bin\rabbitmq_cleaner.exe --help
+
+DocumentaÃ§Ã£o completa: README.md

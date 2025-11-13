@@ -1,12 +1,12 @@
 {
     "version": "2.0.0",
     "description": "RabbitMQ message cleaner with regex filtering",
-    "homepage": "https://github.com/SEU-USUARIO/rabbitmq-cleaner-cpp",
+    "homepage": "https://github.com/moschini80/rabbitmq-cleaner-cpp",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/SEU-USUARIO/rabbitmq-cleaner-cpp/releases/download/v2.0.0/rabbitmq-cleaner-2.0.0-win64.zip",
-            "hash": "SHA256-HASH-AQUI",
+            "url": "https://github.com/moschini80/rabbitmq-cleaner-cpp/releases/download/v2.0.0/rabbitmq-cleaner-2.0.0-win64.zip",
+            "hash": "BDC8F870BCFA26154CB4E1C09DF0AAD87B1CE7129445E9ED041EB0F8845D968B",
             "extract_dir": "bin"
         }
     },
@@ -15,7 +15,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/SEU-USUARIO/rabbitmq-cleaner-cpp/releases/download/v$version/rabbitmq-cleaner-$version-win64.zip"
+                "url": "https://github.com/moschini80/rabbitmq-cleaner-cpp/releases/download/v$version/rabbitmq-cleaner-$version-win64.zip"
             }
         }
     }

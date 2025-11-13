@@ -27,67 +27,9 @@ Esta aplicação conecta-se a um servidor RabbitMQ via AMQP, lê mensagens de um
 - **Biblioteca**: rabbitmq-c (incluída via MSYS2)
 - Servidor RabbitMQ em execução
 
-## Instalação
+## Instalação (Windows)
 
-### � **Uso Portátil - SEM Instalação** (Mais Simples) ⭐
-
-**Não precisa instalar nada! Apenas baixe e execute:**
-
-1. **Baixar do GitHub:**
-   - Acesse: https://github.com/moschini80/rabbitMQCleanerCPP/releases/latest
-   - Clique em: `rabbitmq-cleaner-2.0.0-win64.zip` para baixar
-
-2. **Extrair para qualquer lugar:**
-   ```powershell
-   # Extrair para onde quiser (até pendrive funciona!)
-   Expand-Archive rabbitmq-cleaner-2.0.0-win64.zip -DestinationPath C:\MeusProgramas\
-   ```
-
-3. **Executar diretamente:**
-   ```powershell
-   cd C:\MeusProgramas\rabbitmq-cleaner-2.0.0-win64\bin
-   .\rabbitmq_cleaner.exe --help
-   ```
-
-✅ **100% Portátil** - Funciona de qualquer pasta  
-✅ **Sem Admin** - Não precisa de permissões especiais  
-✅ **Sem Instalação** - Apenas EXE + 1 DLL  
-✅ **Roda de Pendrive** - Leve para qualquer Windows  
-
----
-
-### 🚀 Instalação Automática (Com PATH)
-
-Se quiser que fique disponível de qualquer lugar no terminal:
-
-```powershell
-irm https://raw.githubusercontent.com/moschini80/rabbitMQCleanerCPP/main/install.ps1 | iex
-```
-
-Isso vai:
-1. ✅ Baixar a última versão automaticamente
-2. ✅ Extrair para `%LOCALAPPDATA%\Programs\RabbitMQCleaner`
-3. ✅ Adicionar ao PATH automaticamente
-4. ✅ Pronto para usar: `rabbitmq_cleaner.exe --help` (de qualquer pasta)
-
----
-
-### 🥤 Via Scoop (Gerenciador de Pacotes - Opcional)
-
-**⚠️ Requer Scoop instalado:** https://scoop.sh/
-
-```powershell
-scoop bucket add moschini https://github.com/moschini80/scoop-bucket
-scoop install rabbitmq-cleaner
-```
-
-**Vantagens:** Atualizações automáticas com `scoop update`
-
----
-
-### 🔨 Compilar do Zero (Desenvolvedores)
-
-#### 1. Instalar MSYS2 e ferramentas
+### 1. Instalar MSYS2 e ferramentas
 
 ```powershell
 # Instalar MSYS2
@@ -97,13 +39,13 @@ winget install msys2.msys2
 C:\msys64\usr\bin\pacman.exe -S mingw-w64-x86_64-gcc mingw-w64-x86_64-rabbitmq-c
 ```
 
-#### 2. Compilar
+### 2. Compilar
 
 ```powershell
 C:\msys64\mingw64\bin\g++.exe -std=c++17 -O2 -o bin\rabbitmq_cleaner.exe src\main.cpp -lrabbitmq
 ```
 
-#### 3. Copiar DLL (para pacote portátil)
+### 3. Copiar DLL (para pacote portátil)
 
 ```powershell
 Copy-Item C:\msys64\mingw64\bin\librabbitmq-4.dll bin\
