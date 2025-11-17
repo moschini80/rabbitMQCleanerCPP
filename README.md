@@ -18,7 +18,7 @@ Esta aplicação conecta-se a um servidor RabbitMQ via AMQP, lê mensagens de um
 - ✅ **Detecção automática de loop** (para quando a primeira mensagem NACKed retorna)
 - ✅ **Modo verbose** para debugging
 - ✅ **Modo loop infinito** opcional
-- ✅ Apenas **1 DLL necessária** (librabbitmq-4.dll) - pacote portátil
+- ✅ **Pacote portátil completo** - todas as DLLs incluídas (3.7 MB)
 - ✅ Relatório de processamento
 
 ## Requisitos
@@ -100,13 +100,22 @@ C:\msys64\usr\bin\pacman.exe -S mingw-w64-x86_64-gcc mingw-w64-x86_64-rabbitmq-c
 #### 2. Compilar
 
 ```powershell
-C:\msys64\mingw64\bin\g++.exe -std=c++17 -O2 -o bin\rabbitmq_cleaner.exe src\main.cpp -lrabbitmq
+C:\msys64\mingw64\bin\g++.exe -std=c++17 -O2 -static-libgcc -static-libstdc++ -o bin\rabbitmq_cleaner.exe src\main.cpp -lrabbitmq
 ```
 
-#### 3. Copiar DLL (para pacote portátil)
+#### 3. Copiar DLLs necessárias (para pacote portátil)
 
 ```powershell
+# Copiar todas as DLLs necessárias
 Copy-Item C:\msys64\mingw64\bin\librabbitmq-4.dll bin\
+Copy-Item C:\msys64\mingw64\bin\libcrypto-3-x64.dll bin\
+Copy-Item C:\msys64\mingw64\bin\libssl-3-x64.dll bin\
+Copy-Item C:\msys64\mingw64\bin\libstdc++-6.dll bin\
+Copy-Item C:\msys64\mingw64\bin\libgcc_s_seh-1.dll bin\
+Copy-Item C:\msys64\mingw64\bin\libwinpthread-1.dll bin\
+
+# Ou usar wildcard (copia todas)
+Copy-Item C:\msys64\mingw64\bin\*.dll bin\
 ```
 
 Agora você pode distribuir a pasta `bin\` com o executável e a DLL! 📦
@@ -287,13 +296,21 @@ Started consuming from queue: eventos
 
 ## Pacote Portátil
 
-Para criar um pacote portátil:
+O pacote de release inclui **todas as DLLs necessárias** (3.7 MB total):
 
-1. Compile a aplicação
-2. Copie `librabbitmq-4.dll` para a pasta `bin\`
-3. Distribua a pasta `bin\` completa
+| DLL | Tamanho | Descrição |
+|-----|---------|-----------|
+| `rabbitmq_cleaner.exe` | 347 KB | Executável principal |
+| `librabbitmq-4.dll` | 153 KB | Cliente RabbitMQ AMQP |
+| `libcrypto-3-x64.dll` | 5.7 MB | OpenSSL - Criptografia |
+| `libssl-3-x64.dll` | 1 MB | OpenSSL - SSL/TLS |
+| `libstdc++-6.dll` | 2.4 MB | C++ Standard Library |
+| `libgcc_s_seh-1.dll` | 147 KB | GCC Runtime |
+| `libwinpthread-1.dll` | 63 KB | Threading POSIX |
 
-Agora pode executar em qualquer Windows sem instalar nada! 📦
+✅ **100% Portátil** - Todas as dependências incluídas no pacote  
+✅ **Funciona em qualquer Windows** - Não precisa instalar nada  
+✅ **Pode rodar de pendrive** - Copie e execute
 
 ## Estrutura do Projeto
 

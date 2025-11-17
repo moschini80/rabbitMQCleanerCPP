@@ -18,10 +18,10 @@ New-Item -ItemType Directory -Path $RELEASE_DIR -Force | Out-Null
 $BIN_DIR = "$RELEASE_DIR\$RELEASE_NAME\bin"
 New-Item -ItemType Directory -Path $BIN_DIR -Force | Out-Null
 
-# Copiar executável e DLL
-Write-Host "Copying executable and DLL..." -ForegroundColor Yellow
+# Copiar executável e DLLs
+Write-Host "Copying executable and DLLs..." -ForegroundColor Yellow
 Copy-Item "bin\rabbitmq_cleaner.exe" "$BIN_DIR\"
-Copy-Item "bin\librabbitmq-4.dll" "$BIN_DIR\"
+Copy-Item "bin\*.dll" "$BIN_DIR\"
 
 # Copiar documentação
 Write-Host "Copying documentation..." -ForegroundColor Yellow

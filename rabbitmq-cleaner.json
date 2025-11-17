@@ -6,7 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/moschini80/rabbitmq-cleaner-cpp/releases/download/v2.0.0/rabbitmq-cleaner-2.0.0-win64.zip",
-            "hash": "BDC8F870BCFA26154CB4E1C09DF0AAD87B1CE7129445E9ED041EB0F8845D968B",
+            "hash": "9D17C0D4626783EE7F9178ABA85D00EBFBF08B8306CDDF06EFD1C9AC1E025D2C",
             "extract_dir": "bin"
         }
     },

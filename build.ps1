@@ -94,9 +94,32 @@ if ($clPath) {
 } elseif ($gccPath) {
     Write-Host "Usando GCC/MinGW" -ForegroundColor Cyan
     
-    $compileCmd = "& `"$gccPath`" -std=c++17 -O2 -o `"$outputExe`" `"$sourceFile`" -lws2_32"
+    $compileCmd = "& `"$gccPath`" -std=c++17 -O2 -static-libgcc -static-libstdc++ -o `"$outputExe`" `"$sourceFile`" -lrabbitmq"
     Write-Host "Comando: $compileCmd" -ForegroundColor Gray
     Invoke-Expression $compileCmd
+    
+    # Copiar DLLs necessárias
+    if (Test-Path $outputExe) {
+        Write-Host "`nCopiando DLLs necessárias..." -ForegroundColor Yellow
+        $mingwBinDir = Split-Path $gccPath
+        $dlls = @(
+            "librabbitmq-4.dll",
+            "libcrypto-3-x64.dll",
+            "libssl-3-x64.dll",
+            "libstdc++-6.dll",
+            "libgcc_s_seh-1.dll",
+            "libwinpthread-1.dll"
+        )
+        foreach ($dll in $dlls) {
+            $dllPath = Join-Path $mingwBinDir $dll
+            if (Test-Path $dllPath) {
+                Copy-Item $dllPath $outputDir -Force
+                Write-Host "  ✓ $dll copiado" -ForegroundColor Green
+            } else {
+                Write-Host "  ! $dll não encontrado (pode não ser necessário)" -ForegroundColor Yellow
+            }
+        }
+    }
     
 } else {
     Write-Host "`nERRO: Nenhum compilador C++ encontrado!" -ForegroundColor Red
